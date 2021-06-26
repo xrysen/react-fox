@@ -1,7 +1,16 @@
 import "./App.css";
 import React, { Suspense, useRef } from "react";
-import { Canvas, useLoader, useFrame } from "react-three-fiber";
+import {
+  Canvas,
+  useLoader,
+  useFrame,
+  extend,
+  useThree,
+} from "react-three-fiber";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
+extend({ OrbitControls });
 
 function Loading() {
   return (
@@ -22,13 +31,9 @@ function Loading() {
 function ArWing() {
   const group = useRef();
   const { nodes } = useLoader(GLTFLoader, "models/arwing.glb");
-  
-  useFrame(() => {
-    group.current.rotation.y += 0.004;
-  })
-  
+
   return (
-    <group ref = {group}>
+    <group ref={group}>
       <mesh visible geometry={nodes.Default.geometry}>
         <meshStandardMaterial
           attach="material"
@@ -41,14 +46,40 @@ function ArWing() {
   );
 }
 
+const CameraControls = () => {
+  const {
+    camera,
+    gl: { domElement },
+  } = useThree();
+
+  const controls = useRef();
+  useFrame((state) => {
+    controls.current.update();
+  });
+  return (
+    <orbitControls
+      ref={controls}
+      args={[camera, domElement]}
+      enableZoom={false}
+      maxAzimuthAngle={Math.PI / 4}
+      maxPolarAngle={Math.PI}
+      minAzimuthAngle={-Math.PI / 4}
+      minPolarAngle={0}
+    />
+  );
+};
+
 function App() {
   return (
-    <Canvas style={{ background: "#171717" }}>
-      <directionalLight intensity={0.5} />
-      <Suspense fallback={<Loading />}>
-        <ArWing />
-      </Suspense>
-    </Canvas>
+    <>
+      <Canvas style={{ background: "white" }}>
+        <CameraControls />
+        <directionalLight intensity={0.5} />
+        <Suspense fallback={<Loading />}>
+          <ArWing />
+        </Suspense>
+      </Canvas>
+    </>
   );
 }
 
