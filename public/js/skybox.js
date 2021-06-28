@@ -78,6 +78,12 @@ class BasicWorldDemo {
     
     this._scene.background = texture;
 
+    const plane = new THREE.Mesh(new THREE.PlaneGeometry(100, 100, 1, 1), new THREE.MeshStandardMaterial({ color: 0xFFFFFF }));
+    plane.castShadow = false;
+    plane.receiveShadow = true;
+    plane.rotation.x  = -Math.PI / 2;
+    this._scene.add(plane);
+
     this._RAF();
   }
 
