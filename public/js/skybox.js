@@ -52,6 +52,24 @@ class BasicWorldDemo {
     light = new THREE.AmbientLight(0x404040);
     this._scene.add(light);
 
+    const controls = new OrbitControls(
+      this._camera, this._threejs.domElement);
+      controls.target.set(0, 0, 0);
+      controls.update();
+    
+
+    const loader = new THREE.CubeTextureLoader();
+    const texture = loader.load([
+      "/images/skybox1/cocoa_lf.jpg",
+      "/images/skybox1/cocoa_rt.jpg",
+      "/images/skybox1/cocoa_up.jpg", // 3
+      "/images/skybox1/cocoa_dn.jpg", // 4
+      "/images/skybox1/cocoa_ft.jpg",
+      "/images/skybox1/cocoa_bk.jpg",
+    ]);
+    
+    this._scene.background = texture;
+
     this._RAF();
   }
 
@@ -68,3 +86,9 @@ class BasicWorldDemo {
     })
   }
 }
+
+let _APP = null;
+
+window.addEventListener('DOMContentLoaded', () => {
+  _APP = new BasicWorldDemo();
+});
