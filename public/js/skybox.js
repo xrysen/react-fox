@@ -59,13 +59,21 @@ class BasicWorldDemo {
     
 
     const loader = new THREE.CubeTextureLoader();
+    // const texture = loader.load([
+    //   "/images/skybox1/cocoa_lf.jpg",
+    //   "/images/skybox1/cocoa_rt.jpg",
+    //   "/images/skybox1/cocoa_up.jpg", // 3
+    //   "/images/skybox1/cocoa_dn.jpg", // 4
+    //   "/images/skybox1/cocoa_ft.jpg",
+    //   "/images/skybox1/cocoa_bk.jpg",
+    // ]);
     const texture = loader.load([
-      "/images/skybox1/cocoa_lf.jpg",
-      "/images/skybox1/cocoa_rt.jpg",
-      "/images/skybox1/cocoa_up.jpg", // 3
-      "/images/skybox1/cocoa_dn.jpg", // 4
-      "/images/skybox1/cocoa_ft.jpg",
-      "/images/skybox1/cocoa_bk.jpg",
+      "/images/skybox2/valley_lf.jpg", // 1
+      "/images/skybox2/valley_rt.jpg", // 2
+      "/images/skybox2/valley_up.jpg", // 3
+      "/images/skybox2/valley_dn.jpg", // 4
+      "/images/skybox2/valley_ft.jpg", // 5
+      "/images/skybox2/valley_bk.jpg", // 6
     ]);
     
     this._scene.background = texture;
