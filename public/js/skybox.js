@@ -68,12 +68,12 @@ class BasicWorldDemo {
     //   "/images/skybox1/cocoa_bk.jpg",
     // ]);
     const texture = loader.load([
-      "/images/skybox2/valley_lf.jpg", // 1
-      "/images/skybox2/valley_rt.jpg", // 2
-      "/images/skybox2/valley_up.jpg", // 3
-      "/images/skybox2/valley_dn.jpg", // 4
-      "/images/skybox2/valley_ft.jpg", // 5
-      "/images/skybox2/valley_bk.jpg", // 6
+      "/images/skybox3/heather_lf.jpg", // 1
+      "/images/skybox3/heather_rt.jpg", // 2
+      "/images/skybox3/heather_up.jpg", // 3
+      "/images/skybox3/heather_dn.jpg", // 4
+      "/images/skybox3/heather_ft.jpg", // 5
+      "/images/skybox3/heather_bk.jpg", // 6
     ]);
     
     this._scene.background = texture;
